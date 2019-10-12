@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div id="todo">
+      <h1>{{ title }}</h1>
+      <div class="users">
+        <div class="users-item" v-for="user in users" v-bind:key="user.id">
+          <div class="users-item-header">
+            <p>{{ user.name }}</p>
+            <p class="users-item__actions">
+              <span onClick="toggleEditUser( this )" class="user-item__actions__edit">Edit User</span>
+              <span v-on:click="removeUser( user.id )" class="user-item__actions__remode">Remove User</span>
+              <span v-on:click="showTasks( user.id )" class="user-item__actions__show">Show Tasks</span>
+              <span onClick="toggleAddTask( this )" class="user-item__actions__add">Add Task</span>
+            </p>
+          </div>
+          <div class="users-item-content">
+            <div class="users-item-content__todos">
+              <ul>
+                <li v-for="task in user.tasks">
+                  <span onClick="toggleEditTask( this )" class="users-item-content__todos__edit-button">[ Edit Task ]</span>
+                  <div v-if="task.state">
+                    <input type="checkbox" checked v-on:click="toggleTask( task )" v-bind:name="task.id" v-bind:id="task.id">
+                    <label class="completed" v-bind:for="task.id">{{ task.description }}</label>
+                  </div>
+                  <div v-else>
+                    <input type="checkbox" v-on:click="toggleTask( task )" v-bind:name="task.id" v-bind:id="task.id">
+                    <label v-bind:for="task.id">{{ task.description }}</label>
+                  </div>
+                  <div class="users-item-content__todos__edit-form users-item-content__form">
+                    <input type="text" v-model="task.description">
+                    <button v-on:click="editTask( task, 0 )">Update Task</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="users-item-content__add-task users-item-content__form">
+                <input type="text" name="task" id="task" v-model="description" placeholder="What do you need to do?">
+                <button v-on:click="createTask(user.id, description)">Create Task</button>
+              </div>
+            <div class="users-item-content__edit-user users-item-content__form">
+                <input type="text" name="username" id="username" v-model="user.name">
+                <button v-on:click="editUser(user.id, user.name)">Change Name</button>
+              </div>
+          </div>
+        </div>
+
+        <div class="users-create">
+            <h2>Create New User</h2>
+            <form v-on:submit="createUser" class="users-item-content__form">
+              <input type="text" name="username" id="username" v-model="name" placeholder="Josue Bustamamante">
+              <button>Create</button>
+            </form>
+          </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="/assets/js/vue.js"></script>
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

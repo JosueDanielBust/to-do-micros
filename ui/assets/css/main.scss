@@ -1,0 +1,137 @@
+$gray: #cccccc;
+$white: #ffffff;
+$black: #444444;
+
+/* Color Theme Swatches in Hex */
+$color-1: #C5A7D9;
+$color-2: #3805F2;
+$color-3: #150259;
+$color-4: #F2E205;
+$color-5: #F2CB05;
+
+body {
+  color: $color-3;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: $color-5;
+  font-size: 8rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0rem 0;
+}
+
+button {
+  background-color: $white;
+  border: 2px solid $color-4;
+  color: $color-4;
+  font-size: 1rem;
+  padding: 0.5rem 4rem;
+  transition: 0.6s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    border-color: $color-3;
+    color: $color-3;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.users {
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  &-item {
+    border: 3px solid $color-5;
+    margin: 1rem 0;
+    &-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.2rem 1rem;
+      p {
+        flex: 0 0 45%;
+        font-weight: bold;
+        &:last-of-type {
+          font-weight: normal;
+          text-align: right;
+        }
+        span {
+          cursor: pointer;
+          margin: 0 0.5rem;
+          transition: 0.3s ease-in;
+          &:hover {
+            color: $color-4;
+          }
+        }
+      }
+    }
+    &-content {
+      &__todos {
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          li {
+            padding: 0.4rem 2rem;
+            span {
+              color: $color-4;
+              cursor: pointer;
+              transition: 0.3s ease-in;
+              &:hover {
+                color: $color-5;
+              }
+            }
+            > div:first-of-type {
+              display: inline-block;
+            }
+            &:first-of-type {
+              padding-top: 1.5rem;
+            }
+            &:last-of-type {
+              padding-bottom: 1.5rem;
+            }
+          }
+        }
+      }
+      &__form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        input {
+          flex: 0 0 60%;
+          padding: 0.5rem;
+          font-size: 0.8rem;
+          color: $color-3;
+        }
+        button {
+          flex: 0 0 30%;
+        }
+      }
+      &__edit-user, &__add-task,
+      &__todos__edit-form {
+        display: none;
+        &.active {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  &-create {
+    margin: 5rem 0 1rem;
+    border: 3px solid $color-5;
+    padding: 1rem;
+    h2 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
