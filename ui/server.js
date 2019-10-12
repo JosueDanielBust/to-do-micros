@@ -3,14 +3,10 @@ let port = 3000;
 let express = require('express');
 let app = express();
 
-app.use('/assets', express.static('assets'));
+app.use('/assets', express.static(__dirname + '/assets'));
 
 app.get('/', function(req, res) {
   res.sendFile( '/templates/index.html', { root : __dirname } );
-});
-
-app.get('/test', function(req, res) {
-  res.send('<p>Hello world!</p>');
 });
 
 app.use(function(req, res, next) {
